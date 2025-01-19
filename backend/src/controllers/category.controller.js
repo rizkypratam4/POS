@@ -1,6 +1,6 @@
 import prisma from "../utils/client.js"
 import { logger } from "../utils/winston.js"
-import { categoryValidation } from "../validations/category.validation"
+import { categoryValidation } from "../validations/category.validation.js"
 
 export const getAllCategory = async (req, res) => {
     try {

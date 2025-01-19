@@ -1,5 +1,6 @@
 import JsonWebToken from "jsonwebtoken"
 import "dotenv/config"
+import { logger } from "./winston.js"
 
 const generateAccessToken = (user) => {
     return JsonWebToken.sign(user, process.env.JWT_SECRET, {
@@ -17,7 +18,8 @@ function verifyRefreshToken(token) {
     try {
         return JsonWebToken.verify(token, process.env.JWT_REFRESH_SECRET)
     } catch (error) {
-        return error
+        logger.error("controllers/user.controller.js:verifyRefreshToken - " + error)
+        return null
     }
 }
 
@@ -29,7 +31,8 @@ const verifyAccessToken = (token) => {
     try {
         return JsonWebToken.verify(token, process.env.JWT_SECRET)
     } catch (error) {
-        return error
+        logger.error("controllers/user.controller.js:verifyAccessToken - " + error)
+        return null
     }
 }
 
