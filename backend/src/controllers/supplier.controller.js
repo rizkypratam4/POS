@@ -157,22 +157,22 @@ export const updateSupplier = async (req, res) => {
 }
 export const deleteSupplier = async (req, res) => {
     try {
-        const result = await prisma.suppliers.delete({
-            where: {
-                id: Number(req.params.id)
-            }
-        })
-        return res.status(200).json({
-            message: "success",
-            result
-        })
+      const result = await prisma.suppliers.delete({
+        where: {
+          id: Number(req.params.id),
+        },
+      });
+      return res.status(200).json({
+        message: "success",
+        result,
+      });
     } catch (error) {
-        logger.error(
-            "controllers/supplier.controller.js:deleteSupplier - " + error.message
-        )
-        return res.status(500).json({
-            message: error.message,
-            result: null
-        })
+      logger.error(
+        "controllers/supplier.controller.js:deleteSupplier - " + error.message
+      );
+      return res.status(500).json({
+        message: error.message,
+        result: null,
+      });
     }
-}
+  };
